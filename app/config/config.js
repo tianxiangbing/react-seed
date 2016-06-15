@@ -1,13 +1,8 @@
-import 'whatwg-fetch';
-
+//import 'whatwg-fetch';
+import qwest from  'qwest';
 
 import '../Page/App/_App.scss';
-import '../Page/Fieldsign/_Fieldsign.scss';
-import 'react-day-picker/lib/style.css';
-import '../Page/Record/_Record.scss';
-import '../Page/SelectArea/_SelectArea.scss';
 import '../Component/_Dialog.scss';
-
 let Config = {
 	ajax: function(url,param) {
 		var args = Array.prototype.slice.call(arguments, 0);
@@ -22,14 +17,21 @@ let Config = {
 			args [0] += "?"+args[1].body;
 			delete args [1]
 		}
-		return fetch.apply(null,args).then((response) => {
+		return qwest.get(args[0],args[1]).then((res,data)=>{
+			return data;
+		})
+		/*return fetch.apply(null,args).then((response) => {
 			return response.json()
-		});
+		});*/
 	},
 	native: function(method, data) {
-		return fetch("/mock/" + method + ".json").then((response) => {
+	/*	return fetch("/mock/" + method + ".json").then((response) => {
 			return response.json()
-		});
+		});*/
+		
+		return qwest.get("/mock/" + method + ".json").then((res,data)=>{
+			return data;
+		})
 	}
 }
 export default Config;

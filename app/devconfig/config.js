@@ -2,10 +2,6 @@
 import qwest from  'qwest';
 
 import '../Page/App/_App.scss';
-import '../Page/Fieldsign/_Fieldsign.scss';
-import 'react-day-picker/lib/style.css';
-import '../Page/Record/_Record.scss';
-import '../Page/SelectArea/_SelectArea.scss';
 import '../Component/_Dialog.scss';
 
 import cookie from 'react-cookie';
@@ -67,25 +63,6 @@ let Config = {
 				return domain+'get/historyOfDay.json'+param
 				break;
 			}
-			case "getTime":{
-				return domain+'get/orgTime.json'+param
-				break;
-			}
-			case "sign":{
-				return domain+'sign.json'+param
-				break;
-			}
-			case 'upload':{
-				return domain+'upload/images.json'+param
-				break;
-			}
-			case 'historyOfMonth':{
-				return domain+'get/historyOfMonth.json'+param
-			}
-			case 'historyOfDay':{
-				//他人外勤
-				return domain+'get/out/historyOfDay.json'+param
-			}
 		}
 	},
 	native: function(method, data) {
@@ -119,100 +96,22 @@ let Config = {
 				}
 				break;
 			}
-			case 'getorglist':{ 
-				window.indexBind =function(data){
-		            data = JSON.parse(decodeURI(data));
-		            let result ={
-		            	code :200,
-		            	data:data
-		            };
-		            t && t.call(null,result)
-				};
-				if(!isAndr){
-					window.getOrgIOS&&window.getOrgIOS();
-				}else{
-					window.Native_Bridge_uban.onJsCall('indexBind', 'getOrginfo');
-				}
-				return {
-					then:function(f){
-						t =f;
-					}
-				}
-				break;
-			}
-			case 'selectPictures':{
-				//window.selectPictureIOS&&window.selectPictureIOS(data.count,data.sum);
-				window.selectPicturesFromJs =function(data){
-		            data = JSON.parse(decodeURI(data));
-		            let result ={
-		            	code :200,
-		            	data:data
-		            };
-		            t && t.call(null,result)
-				};
-				if(!isAndr){
-					window.selectPictureIOS&&window.selectPictureIOS(data.count,data.sum);
-				}else{
-					window.Native_Bridge_uban.onJsCall('selectPicturesFromJs', 'selectPicture',data.count+"&"+data.sum);
-				}
-				return {
-					then:function(f){
-						t =f;
-					}
-				}
-				break;
-			}
-			case 'selectPeopleIOS':{
-				//window.selectPeopleIOS&&window.selectPeopleIOS("500",localStorage.getItem('orgId'),localStorage.getItem('orgName'));
-				window.selectPeopleFromJs =function(data){
-		            data = JSON.parse(data);
-		            let result ={
-		            	code :200,
-		            	data:data
-		            };
-		            t && t.call(null,result)
-				};
-				if(!isAndr){
-					window.selectPeopleIOS&&window.selectPeopleIOS("500",orgId,orgName);
-				}else{
-					//alert("500&"+orgId+"&"+orgName)
-					window.Native_Bridge_uban.onJsCall('selectPeopleFromJs', 'selectPeople',"500&"+orgId+"&"+orgName);
-				}
-				return {
-					then:function(f){
-						t =f;
-					}
-				}
-				break;
-			}
-			case 'showImage':{
-				if(!isAndr){
-					window.viewPicturesIOS&&window.viewPicturesIOS(data.position, JSON.stringify(data.picsArr));
-				}else{
-					 location.href = 'uban://start/showImage?position='+data.position+'&urls='+JSON.stringify(data.picsArr);
-				}
-				return {
-					then:function(f){
-						t =f;
-					}
-				}
-				break;
-			}
 			default:{
-				window.JSBridge.requestHybrid({
-                    method: method,
-                    data: data,
-                    callback: function (result) {
-                        /*$('.result',_this).html(JSON.stringify(data));
-                        conosle.log(JSON.stringify(data));*/
-                        t && t.call(null,result)
-                    }
-                });
+				setTimeout(()=>{
+					window.JSBridge.requestHybrid({
+	                    method: method,
+	                    data: data,
+	                    callback: function (result) {
+	                        t && t(result)
+	                    }
+	                });
+				},0)
 				return {
 					then:function(f){
 						t =f;
 					}
 				}
+				break;
 			}
 		}
 

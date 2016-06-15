@@ -18,6 +18,8 @@ import Dialog from '../../Component/Dialog';
 
 export default class App extends Component{
 	constructor(props){
+		super(props)
+		this.state={dialog:0};
 	}
 	componentWillMount(){
 	}
@@ -30,7 +32,7 @@ export default class App extends Component{
 	render(){
 		return (
 			<div className="body">
-				<Helmet title="签到"/>
+				<Helmet title="种子"/>
                 {this.state.dialog?this.renderDialog():undefined}
 			</div>
 			)
