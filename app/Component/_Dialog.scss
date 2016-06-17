@@ -13,7 +13,7 @@
 		color:#fff;
 	    padding:pxToRem(20) pxToRem(40);
 	    border-radius:pxToRem(10);
-	    font-size:$fontSize2;
+	    @extend .fontSize2;
 	}
 	z-index:99;
 	&.confirm{

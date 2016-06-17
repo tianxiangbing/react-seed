@@ -39,10 +39,7 @@ $fontFamily:'Microsoft Yahei', 'Hiragino Sans GB', Helvetica;
         height: $px * 3;
     }
 }
-$fontSize1:/*12px*2;*/pxToRem(26);
-$fontSize2:/*14px*2*/pxToRem(28);
-$fontSize3:/*16px*2*/pxToRem(32);
-$fontSize4:/*18px*2*/pxToRem(34);
+
 .fontSize{
 	@include font-dpr(12px);
 }
@@ -128,17 +125,17 @@ margin:0;
 .triangle {
     width: 0;
     height: 0;
-    border-left: pxToRem(15) solid transparent;
-    border-right: pxToRem(15) solid transparent;
-    $borderColor:#aea5a5;
+    border-left: pxToRem(12) solid transparent;
+    border-right: pxToRem(12) solid transparent;
+    $borderColor:#B4B4B4;
     display:inline-block;
     float:right;
     margin:pxToRem(35) pxToRem(40) auto auto;
 	&.down{
-	    border-top: pxToRem(20) solid $borderColor;
+	    border-top: pxToRem(14) solid $borderColor;
     }
     &.up{
-    	border-bottom:pxToRem(20) solid $borderColor;
+    	border-bottom:pxToRem(14) solid $borderColor;
     }
 }
 .z-4{
@@ -153,7 +150,37 @@ input,textarea{
 	tap-highlight-color:none;
 	-webkit-touch-callout:none;
 	touch-callout:none;
+	box-sizing:border-box;
 }
 .hide{
 	display:none !important;
+}
+
+
+@mixin border($color,$borderRadius,$borderWidth,$zIndex) {
+    position: relative;
+	&:before {
+	    content: '';
+	    position: absolute;
+	    width: 200%;
+	    height: 200%;
+	    border-style:solid;
+	    border-color:$color;
+	    border-width:$borderWidth;
+		border-radius:$borderRadius;
+	    -webkit-transform-origin: 0 0;
+	    -moz-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	    -o-transform-origin: 0 0;
+	    transform-origin: 0 0;
+	    -webkit-transform: scale(0.5, 0.5);
+	    -ms-transform: scale(0.5, 0.5);
+	    -o-transform: scale(0.5, 0.5);
+	    transform: scale(0.5, 0.5);
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	    z-index: $zIndex;
+	    pointer-events: none;
+	}
 }

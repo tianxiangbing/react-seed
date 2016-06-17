@@ -20,6 +20,22 @@
       return false;
     }
   };
+  /* 
+   客户端 v1.2.x 版本以前定好的接口，在这个 hybrid-bridge 项目诞生前的接口
+   在 hybrid-bridge@1.1.0 版本及以后都要兼容这些接口，通过这个方法做兼容中转
+   */
+  function oldApiTrans(apiName){
+    if(win.JSBridge._SURPPORTED_API && win.JSBridge._SURPPORTED_API[apiName]){ // 如果当前版本客户端已经重写支持了此接口
+      win.JSBridge.requestHybrid({
+        module: 'webview',
+        method: apiName
+      });
+    }else if(util.isAndriond()){ // 如果是老版本且是安卓系统
+      act && act.doAct(apiName);
+    }else{ // 如果是老版本且是IOS系统
+      win.location = '/restController/doAct/' + apiName;
+    }
+  }
 
   // 所有提供给 Native 或 H5 调用的 API 或者临时生成的唯一的 callback 函数都挂载在这个对象上（临时的 callback 用完要及时 delete 掉）
   win.JSBridge = {
@@ -67,7 +83,7 @@
         success: true,
         msg: '执行成功',
         data: [
-          {name: '张三', tel: 123456789},
+          {name: '秋知', tel: 15889936061},
           {name: '移动客服', tel: 10086}
         ]
       });
@@ -180,12 +196,18 @@
        方案：在 hybrid-bridge.js 初始化时先不调用 win.JSBridge._confirmSurpportedAPI 发起请求，
        而是在页面的脚本里面再调用此方法发起请求。
        */
+     /* if(util.isIOS()) {
+        win.location = createdUrl;
+      }else if(util.isAndriond()){*/
         var iframe = document.createElement('iframe');
         iframe.src = createdUrl;
         iframe.style.display = 'none';
         document.body.appendChild(iframe);
         document.body.removeChild(iframe);
         iframe = null;
+      /*}else{
+        win.location = createdUrl;
+      }*/
     }
   };
 })(window);
