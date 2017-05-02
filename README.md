@@ -1,5 +1,4 @@
-# React seed [![Build Status](https://travis-ci.org/badsyntax/react-seed.svg?branch=master)](https://travis-ci.org/badsyntax/react-seed)
-
+# React seed 
 一个react的简单示例，包含react-router和动态部署项目.
 
 ## What you get
