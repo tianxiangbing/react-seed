@@ -12,23 +12,21 @@ var extractCSS = new ExtractTextPlugin('' + filename + '.css');
 //动态创建html
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var htmlPlugin = new HtmlWebpackPlugin({
-    title: "签到",
+    title: "首页",
     filename: '../index.html',
     template: "template.html"
 });
-var modulesDirectories = ["web_modules", "node_modules", "bower_components", "app/devconfig", "app/cyconfig"];
-if (process.env.NODE_ENV == "test") {
-    modulesDirectories = ["web_modules", "node_modules", "bower_components", "app/config", "app/cyconfig"];
-}
+var modulesDirectories = ["web_modules", "node_modules", "bower_components", "app/config"];
+
 var config = {
     entry: {
         app: ["./app/app.jsx"],
-        vendor: ["react", "react-dom", 'whatwg-fetch', 'react-router']
+        vendor: ["react", "react-dom", 'react-router']
     },
     output: {
-        path: path.resolve(__dirname, "caiyun/build"),
+        path: path.resolve(__dirname, "docs/js"),
         //publicPath: "/data/assets/build/",
-        publicPath: "",
+        publicPath: "js",
         filename: filename + ".js"
     },
     resolve: {
@@ -76,9 +74,4 @@ if (process.env.NODE_ENV == "test" || process.env.NODE_ENV == "dev") {
     config.devtool = "source-map";
     config.output.publicPath = "/";
 }
-if (process.env.NODE_ENV == "production") {
-    config.resolve.modulesDirectories = ["web_modules", "node_modules", "bower_components", "app/devconfig", "app/msconfig"];
-    config.output.path = path.resolve(__dirname, "masheng/build")
-}
-console.log(config)
 module.exports = config

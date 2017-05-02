@@ -1,24 +1,24 @@
 # React seed [![Build Status](https://travis-ci.org/badsyntax/react-seed.svg?branch=master)](https://travis-ci.org/badsyntax/react-seed)
 
-A boilerplate for building React apps with ES6 and webpack.
+一个react的简单示例，包含react-router和动态部署项目.
 
 ## What you get
 
 * React 15.0.1
-* ES6, ES7 & JSX to ES5 via babel
-* webpack with react hot loader, and other useful loaders
-* [Local CSS](https://github.com/webpack/css-loader#local-scope)
+* ES6和jsx语法
+* webpack热部署，动态构建hash资源文件
+* Sass样式文件
 
 
 ## Getting started
 
-### Installing with git
+### 创建项目
 
 ```bash
 git clone --depth=1 https://github.com/tianxiangbing/react-seed.git my-project
 ```
 
-### Installing with yeoman
+### 开始运行
 
 1. `npm install i`
 3. `npm start`  动态部署
