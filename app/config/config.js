@@ -6,7 +6,7 @@ let Config = {
 		
 	},
 	native: function(method, data) {
-
+		
 	}
 }
 export default Config;

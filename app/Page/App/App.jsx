@@ -7,8 +7,6 @@
  * Contact: 55342775@qq.com
  */
 import React from 'react';
-import {Link} from 'react-router';
-import Config from 'config';
 let {Component}= React;
 import Styles from './_App.scss';
 import Menu from 'Component/Menu/Menu';
@@ -22,7 +20,7 @@ export default class App extends Component{
 	render(){
 		return (
 			<div>
-				<Menu>首页</Menu>
+				<Menu>首页<i className="iconfont icon-tishi"/></Menu>
 				<SecondMenu/>
 			</div>
 			)

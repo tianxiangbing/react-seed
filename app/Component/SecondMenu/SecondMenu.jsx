@@ -8,13 +8,21 @@ export default class SecondMenu extends Component{
 		super(props);
 		this.state={dialog:0};
 	}
-    checkLogin(){
-		this.setState({dialog:{msg:'请先登录',type:'alert',show:true}});
+    checkLogin(e){
+        console.log(e)
+        e.preventDefault();
+		this.setState({dialog:{msg:'请先登录',type:'alert',show:true,buttons:<a onClick={this.jumpLogin.bind(this)}>确定</a>}});
 		return false;
+    }
+    jumpLogin(){
+        location.href="#list";
+    }
+    callback(){
+        this.setState({dialog:0});
     }
 	renderDialog(){
 		console.log(this.state.dialog)
-		return <Dialog stage={this} {...this.state.dialog}/>
+		return <Dialog stage={this} {...this.state.dialog} callback={this.callback.bind(this)}/>
 	}
     render(){
         return (

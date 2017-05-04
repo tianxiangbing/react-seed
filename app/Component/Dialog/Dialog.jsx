@@ -11,8 +11,9 @@ export default class Dialog extends Component{
 	componentDidMount(){
 		if(this.props.timer||this.props.type == "alert"){
 			this.timer = setTimeout(()=>{
-				this.setState({show:false});
-				this.props.stage.setState({dialog:0})
+				// this.setState({show:false});
+				// this.props.stage.setState({dialog:0})
+				this.props.callback();
 			},2000)
 		}
 	}
