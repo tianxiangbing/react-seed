@@ -11,10 +11,12 @@ import { render } from 'react-dom'
 import { Router, Route, IndexRoute, Link, IndexLink, hashHistory } from 'react-router'
 
 import Styles from './_App.scss';
-import App from './page/App/App';
+import App from 'page/App/App';
+import List from 'page/List/List';
 
 render((
   <Router history={hashHistory}>
     <Route path="/" component={App}/>
+    <Route path="list" component={List}/>
   </Router>
 ), document.getElementById('app'))

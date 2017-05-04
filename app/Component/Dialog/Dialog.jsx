@@ -1,4 +1,5 @@
 import React from 'react';
+import Style from './_Dialog.scss';
 //
 let {Component} = React;
 

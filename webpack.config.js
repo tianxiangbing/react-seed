@@ -16,7 +16,7 @@ var htmlPlugin = new HtmlWebpackPlugin({
     filename: '../index.html',
     template: "template.html"
 });
-var modulesDirectories = ["web_modules", "node_modules", "bower_components", "app/config"];
+var modulesDirectories = ["web_modules", "node_modules", "bower_components", "app/config","app"];
 
 var config = {
     entry: {
