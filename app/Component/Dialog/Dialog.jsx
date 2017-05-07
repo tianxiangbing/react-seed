@@ -13,7 +13,7 @@ export default class Dialog extends Component{
 			this.timer = setTimeout(()=>{
 				this.setState({show:false});
 				this.props.stage.setState({dialog:0})
-			},2000)
+			},this.props.timer||2000)
 		}
 	}
 	hide(){
