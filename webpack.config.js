@@ -24,9 +24,9 @@ var config = {
         vendor: ["react", "react-dom", 'react-router']
     },
     output: {
-        path: path.resolve(__dirname, "docs/js"),
+        path: path.resolve(__dirname, "docs/build"),
         //publicPath: "/data/assets/build/",
-        publicPath: "js",
+        publicPath: "/build/",
         filename: filename + ".js"
     },
     resolve: {
