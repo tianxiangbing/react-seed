@@ -13,5 +13,5 @@ var server = new WebpackDevServer(compiler, {
 if(process.env.NODE_ENV =="dev"){
 	server.listen(9090);
 }else{
-	server.listen(8080,'192.168.40.93');
+	server.listen(8080,'127.0.0.1');
 }
